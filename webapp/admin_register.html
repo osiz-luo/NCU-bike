@@ -1,0 +1,111 @@
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Floo-新管理員註冊</title>
+<link rel="stylesheet" href="css/member_register.css" />
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/jquery-confirm.js"></script>
+<script src="js/big.min.js"></script>
+</head>
+<body>
+	<div class="container1">
+		<floo>NCU FLOO!</floo>
+		<ride>Let's start the ride</ride>
+	</div>
+
+	<div class="container2">
+		<div class="mmenu">
+			<a href>✧管</a>
+		</div>
+		<div class="mmenu">
+			<a href>✧理</a>
+		</div>
+		<div class="mmenu">
+			<a href>✧員</a>
+		</div>
+		<div class="mmenu">
+			<a href>✧註</a>
+		</div>
+		<div class="mmenu">
+			<a href>✧冊</a>
+		</div>
+	</div>
+
+	<div class="container-34">
+		<form class="container3" id="form" accept-charset="utf-8">
+			<div style="display: none;">
+				<input type="hidden" name="_method" value="POST">
+			</div>
+			<h2>註冊管理員</h2>
+			<br /> <a>姓名<star>*</star></a> <input name="name" maxlength="45"
+				type="text" id="admin_name" required="required" /><br /> <a>帳號<star>*</star></a>
+			<input name="account" maxlength="45" type="text" id="account"
+				required="required" /><br /> <a>密碼<star>*</star></a>
+			<input name="password" maxlength="45" type="password"
+				id="admin_password" required="required"
+				placeholder="數字或大小寫英文, 至少8碼" /><br /> <input
+				class="submitbutton" type="button" value="註冊" id="submit" />
+		</form>
+
+		<script type="text/javascript">
+			$(document)
+					.ready(
+							function() {
+								// 處理表單點擊事件
+								$('#submit').click(function() {
+									submit();
+								});
+
+								function submit() {
+									var name = $('#admin_name').val();
+									var account = $('#account').val();
+									var password = $('#admin_password').val();
+
+									var account_rule = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+									var password_rule = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+
+									if (!account_rule.test(account)) {
+										alert("帳號格式不符，長度至少8，且至少包含一個數字和英文字母！");
+									} else if (!password_rule.test(password)) {
+										alert("密碼格式不符，長度至少8，且至少包含一個數字和英文字母！");
+									}else {
+										// 將資料組成JSON格式
+										var data_object = {
+											"admin_name" : name,
+											"account" : account,
+											"admin_password" : password,
+										};
+
+										// 將JSON格式轉換成字串
+										var data_string = JSON
+												.stringify(data_object);
+
+										// 發出POST的AJAX請求
+										$
+												.ajax({
+													type : "POST",
+													url : "api/admin.do",
+													data : data_string,
+													crossDomain : true,
+													cache : false,
+													dataType : 'json',
+													timeout : 5000,
+													success : function(response) {
+														alert(response.message);
+													},
+													error : function() {
+														alert("無法連線到伺服器！");
+													}
+												});
+									}
+								}
+							});
+		</script>
+
+
+
+
+		<div class="container4"></div>
+	</div>
+</body>
+</html>

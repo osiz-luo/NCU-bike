@@ -1,0 +1,91 @@
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Floo首頁</title>
+<link rel="stylesheet" href="css/index.css" />
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/jquery-confirm.js"></script>
+<script src="js/big.min.js"></script>
+</head>
+<body>
+	<div class="container1">
+		<floo>NCU FLOO!</floo>
+		<ride>Let's start the ride</ride>
+		<ride>國立中央大學腳踏車共享服務</ride>
+		<login> <input class="loginbutton" type="button"
+			value="&ensp;➤會員登入&ensp;" id="login" /> <input class="adminbutton"
+			type="button" value="&ensp;➤管理員登入&ensp;" id="adminlogin" /> </login>
+
+	</div>
+
+	<br />
+	<br />
+	<div class="container2">
+		<p>
+			<b>服務特色 ｜ 校園移動的便利選擇</b>
+		</p>
+	</div>
+
+	<div class="container-34">
+		<div class="container3"></div>
+		<div class="container4">
+			<p>中央校內師生，只要完成會員註冊並綁定學生證成為 FLOO 會員，皆可在校園內體驗 FLOO腳踏車共享交通服務。</p>
+		</div>
+	</div>
+
+	<div class="container-56">
+		<div class="container6">
+			<p>使用網頁隨時隨地瀏覽可租借的腳踏車，在地圖上點擊租借，開始一段短程通勤。</p>
+		</div>
+		<div class="container5"></div>
+	</div>
+
+	<div class="container-78">
+		<div class="container7"></div>
+		<div class="container8">
+			<p>獨特任務系統，在您閒暇的路途中完成任務，更加節省您的通勤費用。</p>
+		</div>
+	</div>
+
+	<br />
+	<div class="container-910">
+		<div class="container9">
+			<h2>FLOO任務點數大放送 !</h2>
+			<p>完成騎乘任務獲得點數</p>
+			<p>一點折抵一元無上限</p>
+			<p>騎越多省越多</p>
+			<br /> <br />
+			<h3>
+				<input class="mapbutton" type="button" value="&ensp;➤立即開始&ensp;"
+					id="map" />
+			</h3>
+		</div>
+		<div class="container10"></div>
+	</div>
+
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			// 處理表單點擊事件
+			$('#login').click(function() {
+				location.href = "member_login.html";
+			});
+		})
+
+		$(document).ready(function() {
+			// 處理表單點擊事件
+			$('#map').click(function() {
+				location.href = "map.html";
+			});
+		})
+
+		$(document).ready(function() {
+			// 處理表單點擊事件
+			$('#adminlogin').click(function() {
+				location.href = "admin_login.html";
+			});
+		})
+	</script>
+</body>
+
+</html>

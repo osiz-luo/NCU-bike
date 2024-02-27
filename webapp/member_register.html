@@ -1,0 +1,126 @@
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Floo-新會員註冊</title>
+<link rel="stylesheet" href="css/member_register.css" />
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/jquery-confirm.js"></script>
+<script src="js/big.min.js"></script>
+</head>
+<body>
+	<div class="container1">
+		<floo>NCU FLOO!</floo>
+		<ride>Let's start the ride</ride>
+	</div>
+
+	<div class="container2">
+		<div class="mmenu">
+			<a href="index.html">✧服務介紹</a>
+		</div>
+		<div class="mmenu">
+			<a href="map.html">✧車輛租借</a>
+		</div>
+		<div class="mmenu">
+			<a href="member_login.html">✧會員登入</a>
+		</div>
+		<div class="mmenu">
+			<a href="mission.html">✧任務列表</a>
+		</div>
+		<div class="mmenu">
+			<a href="index.html">✧回首頁</a>
+		</div>
+	</div>
+
+	<div class="container-34">
+		<form class="container3" id="form" accept-charset="utf-8">
+			<div style="display: none;">
+				<input type="hidden" name="_method" value="POST">
+			</div>
+			<h2>註冊會員</h2>
+			<br /> <a>姓名<star>*</star></a> <input name="name" maxlength="45"
+				type="text" id="member_name" required="required" /><br /> <a>電子郵件<star>*</star></a>
+			<input name="email" maxlength="45" type="email" id="member_email"
+				required="required" placeholder="例如laura123@gmail.com" /><br /> <a>密碼<star>*</star></a>
+			<input name="password" maxlength="45" type="password"
+				id="member_password" required="required"
+				placeholder="數字或大小寫英文, 至少8碼" /><br /> <a>學號<star>*</star></a> <input
+				name="id" maxlength="9" type="text" id="member_id"
+				required="required" placeholder="例如112423065" /><br /> <input
+				class="submitbutton" type="button" value="註冊" id="submit" />
+		</form>
+
+		<script type="text/javascript">
+			$(document)
+					.ready(
+							function() {
+								var userId = localStorage.getItem('userId');
+								this.userId = userId;
+								if (userId) {
+									alert("你已登入，" + this.userId
+											+ "，畫面將跳轉到正式租借頁面");
+									location.href = "map_logined.html";
+								}
+								// 處理表單點擊事件
+								$('#submit').click(function() {
+									submit();
+								});
+
+								function submit() {
+									var name = $('#member_name').val();
+									var email = $('#member_email').val();
+									var password = $('#member_password').val();
+									var id = $('#member_id').val();
+
+									var email_rule = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
+									var password_rule = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+									var id_rule = /^\d{9,}$/;
+
+									if (!email_rule.test(email)) {
+										alert("Email格式不符！");
+									} else if (!password_rule.test(password)) {
+										alert("密碼格式不符，長度至少8，且至少包含一個數字和英文字母！");
+									} else if (!id_rule.test(id)) {
+										alert("學號格式不符，長度至少為9、純數字！");
+									} else {
+										// 將資料組成JSON格式
+										var data_object = {
+											"name" : name,
+											"email" : email,
+											"password" : password,
+											"id" : id
+										};
+
+										// 將JSON格式轉換成字串
+										var data_string = JSON
+												.stringify(data_object);
+
+										// 發出POST的AJAX請求
+										$
+												.ajax({
+													type : "POST",
+													url : "api/member.do",
+													data : data_string,
+													crossDomain : true,
+													cache : false,
+													dataType : 'json',
+													timeout : 5000,
+													success : function(response) {
+														//alert(response.message);
+														location.href = "member_login.html";
+													},
+													error : function() {
+														alert("無法連線到伺服器！");
+													}
+												});
+									}
+								}
+							});
+		</script>
+
+
+
+
+		<div class="container4"></div>
+	</div>
+</body>
+</html>

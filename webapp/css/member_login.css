@@ -1,0 +1,112 @@
+body {
+  margin: 0; /* 滿版無空間 */
+}
+
+.container1 {
+  display: flex;
+  flex-direction: column; /* 將方向設置為垂直，使子元素垂直排列 */
+  align-items: center; /* 容器內子元素置中排 */
+  justify-content: center;
+ 
+  height: 250px; /* 容器大小 */
+  margin: auto;
+  background-image: url("image/cover1.png"); /* 替換 'your-image-path.jpg' 為你的圖片路徑 */
+  background-size: cover; /* 確保圖片充滿整個容器 */
+}
+
+.container1 floo {
+  font-size: 48px; /* 修改字體大小為 36 */
+  font-weight: bold; /* 設置為粗體 */
+}
+
+.container1 ride {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.container2 {
+	display: flex;
+	flex-direction: row; /* 將方向設置為水平，使子元素水平排列 */
+	align-items: center;
+	justify-content: space-around; /* 在子元素之間平均分配空間 */
+	
+	height: 70px; /* 容器大小 */
+	margin: -30px 120px 0;
+	background-color: black;
+	color: aliceblue;
+}
+
+a:link,
+a:visited {
+    color: inherit;
+    text-decoration: none;
+}
+
+.mmenu {
+	font-weight:bold;
+	font-size: 20px; /*文字隨著背景動態調整大小*/
+	margin: 0 10px; /* 左右各留 10px 的間距 */
+}
+
+.mmenu:hover {
+	color: #ff6353;
+	cursor: pointer;
+}
+
+.container-34 {
+  display: flex;
+  justify-content: space-between;
+ 
+  width: 80%;
+  margin: 30px auto 0; /* 將左右外邊距設置為 auto */
+}
+
+.container3 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+ 
+  height: 450px;
+  flex-grow: 2; /* 佔據三分之二的位置 */
+  margin-right: 20px; /* 調整右邊外邊距 */
+}
+
+.container3 a {
+  font-size: 1em;
+  color: #000000;
+}
+
+.container3 star {
+  font-size: 1em;
+  color: #ff0000;
+}
+
+.loginbutton{
+	height: 30px;
+	display: block;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	line-height: 30px;
+	cursor: pointer;
+	border: 1px solid #000;
+	color: #fff;
+	background-color: #000;
+	font-weight:bold;
+}
+
+.loginbutton:hover {
+	color: #ff6353;
+}
+
+.container4 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+ 
+  height: 450px;
+  flex-grow: 3; /* 佔據三分之一的位置 */
+  margin-left: 20px; /* 調整左邊外邊距 */
+  background-image: url("image/bicycle1.png"); /* 替換 'your-image-path.jpg' 為你的圖片路徑 */
+  background-size: cover; /* 確保圖片充滿整個容器 */
+}

@@ -1,0 +1,185 @@
+body {
+  margin-bottom: 20px;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.container1 {
+	display: flex;
+	flex-direction: column; /* 將方向設置為垂直，使子元素垂直排列 */
+	align-items: center; /* 容器內子元素置中排 */
+	justify-content: center;
+	
+	height: 250px; /* 容器大小 */
+	margin: auto;
+	background-image: url("image/cover1.png");
+	/* 替換 'your-image-path.jpg' 為你的圖片路徑 */
+	background-size: cover; /* 確保圖片充滿整個容器 */
+}
+
+.container1 floo {
+	font-size: 48px; /* 修改字體大小為 36 */
+	font-weight: bold; /* 設置為粗體 */
+}
+
+.container1 ride {
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.container2 {
+	display: flex;
+	flex-direction: row; /* 將方向設置為水平，使子元素水平排列 */
+	align-items: center;
+	justify-content: space-around; /* 在子元素之間平均分配空間 */
+	
+	height: 70px; /* 容器大小 */
+	margin: -30px 120px 0;
+	background-color: black;
+	color: aliceblue;
+}
+
+a:link,
+a:visited {
+    color: inherit;
+    text-decoration: none;
+}
+
+.mmenu {
+	font-weight:bold;
+	font-size: 20px; /*文字隨著背景動態調整大小*/
+	margin: 0 10px; /* 左右各留 10px 的間距 */
+}
+
+.mmenu:hover {
+	color: #ff6353;
+	cursor: pointer;
+}
+  
+  .container3 {
+    display: flex;
+    flex-direction: row; /* 將方向設置為水平，使子元素水平排列 */
+    align-items: center;
+    justify-content: space-around; /* 在子元素之間平均分配空間 */
+    border-bottom: 1px solid #000000;
+    height: 70px; /* 容器大小 */
+    margin: 10px 120px 0;
+    background-color: #ffffff;
+  }
+  
+  .container3 p {
+    font-size: 1.5em; /*文字隨著背景動態調整大小*/
+    color: #000000;
+    margin: 0 10px; /* 左右各留 10px 的間距 */
+  }    
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 水平置中 */
+  padding-bottom: 20px;
+  margin: 10px 120px 0px;
+  border-bottom: 1px solid #adadad;
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+.separator {
+  background-color: #ccc;
+  height: 100%;
+}
+
+/* 以下是示例內容，你可以根據實際需求修改 */
+.left-content, .right-content {
+  margin-bottom: 20px;
+}
+
+.box {
+    border: 2px solid #ADADAD;
+    padding: 20px;
+    color: #000; /* 調整文字顏色，這裡使用黑色 */
+    width: 80%; /* 或者使用 min-content */
+    border-radius: 5px;
+  }
+
+  .missionTitle{
+    font-weight: bold;
+    font-size: 20px;
+    padding: 10px;
+  }
+
+  .missionContent {
+    padding: 10px;
+  }
+
+.btnContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+  .btn {
+    background-color: #5587B5;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+  /* .btn:hover{
+    color: #ffffff;
+    background-color: #5587B5;
+  } */
+
+  .btn-give-up {
+    background-color: #f44336;
+}
+
+.btn-complete {
+    background-color: #2196f3;
+}
+
+.reward {
+    padding: 10px;
+    font-weight: bold;
+}
+
+  #messageModal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+#messageModal p {
+    margin: 0;
+}
+
+.hidden {
+    display: none;
+    margin-left: 0px; /* 調整 myBlock 與左方元素的水平間距 */
+}
+.hidden2 {
+    display: none;
+    margin-left: 0px; /* 調整 myBlock 與左方元素的水平間距 */
+}
+
+
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}

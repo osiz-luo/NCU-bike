@@ -1,0 +1,235 @@
+body {
+    margin-bottom: 10px;
+    padding: 0;
+    font-family: Arial, sns-serif;
+  }
+  
+  .container1 {
+      display: flex;
+      flex-direction: column; /* 將方向設置為垂直，使子元素垂直排列 */
+      align-items: center; /* 容器內子元素置中排 */
+      justify-content: center;
+      
+      height: 250px; /* 容器大小 */
+      margin: auto;
+      background-image: url("image/cover1.png");
+      /* 替換 'your-image-path.jpg' 為你的圖片路徑 */
+      background-size: cover; /* 確保圖片充滿整個容器 */
+  }
+  
+  .container1 floo {
+      font-size: 48px; /* 修改字體大小為 36 */
+      font-weight: bold; /* 設置為粗體 */
+  }
+  
+  .container1 ride {
+      font-size: 24px;
+      font-weight: bold;
+  }
+  
+  .container2 {
+      display: flex;
+      flex-direction: row; /* 將方向設置為水平，使子元素水平排列 */
+      align-items: center;
+      justify-content: space-around; /* 在子元素之間平均分配空間 */
+      
+      height: 70px; /* 容器大小 */
+      margin: -30px 120px 0;
+      background-color: black;
+      color: aliceblue;
+  }
+  
+  a:link,
+  a:visited {
+      color: inherit;
+      text-decoration: none;
+  }
+  
+  .mmenu {
+      font-weight:bold;
+      font-size: 20px; /*文字隨著背景動態調整大小*/
+      margin: 0 10px; /* 左右各留 10px 的間距 */
+  }
+  
+  .mmenu:hover {
+      color: #ff6353;
+      cursor: pointer;
+  }
+
+.btn{
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px 30px;
+    color: #ffffff;
+    background-color: #5587B5;
+    font-size: 18px;
+    border: none;
+}
+.btn:hover{
+    color: #ffffff;
+    background-color: #40678c;
+}
+
+.container3 {
+    display: flex;
+    flex-direction: row; /* 將方向設置為水平，使子元素水平排列 */
+    align-items: center;
+    justify-content: space-around; /* 在子元素之間平均分配空間 */
+    border-bottom: 1px solid #000000;
+    height: 70px; /* 容器大小 */
+    margin: 10px 120px 0;
+    background-color: #ffffff;
+  }
+  
+  .container3 p {
+    font-size: 1.5em; /*文字隨著背景動態調整大小*/
+    color: #000000;
+    margin: 0 10px; /* 左右各留 10px 的間距 */
+  }    
+
+.Container{
+    margin: 0px 50px;
+    margin-bottom: 100px;
+}
+
+.ContentTitleBig{
+    padding-bottom: 30px;
+    border-bottom: #cccccc 1px solid;
+}
+.ContentTitleBig{
+    font-size: 900;
+    font-weight: 900;
+    text-align: center;
+}
+
+.ContentTitle{
+    font-weight: bolder;
+    font-size: 20px;
+    padding: 5px 0px;
+}
+
+.TotalPrice{
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 120px 0;
+    padding: 10px;
+    border-bottom: #cccccc 1px solid;
+}
+.SpotTime{
+    font-size:20px;
+    color:#5587B5;
+}
+.SpotInfo{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin: 10px 120px 0;
+    padding: 10px;
+    border-bottom: #cccccc 1px solid;
+}
+.BikeInfo{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin: 10px 120px 0;
+    padding: 10px;
+    border-bottom: #cccccc 1px solid;
+}
+.Payment{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin: 10px 120px 0;
+    padding: 10px;
+    border-bottom: #cccccc 1px solid;
+}
+.Problem{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin: 10px 120px 0;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-bottom: #cccccc 1px solid;
+}
+
+.PaymentBtnGroup{
+    display: flex;
+    justify-content: center;
+}
+
+.StartSpotContent{
+    display: flex;
+    justify-content: space-between;
+}
+
+li{
+    color: #5587B5;
+}
+
+.Info-m{
+    margin: 10px 0;
+}
+
+.Bike{
+    padding:10px;
+    font-size: 30px;
+    margin-left: 25px;
+}
+
+.ReturnBox{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 25px;
+}
+
+.PointBox{
+    display: flex;
+    justify-content: space-between;
+}
+
+.PointNum{
+    margin-left: 15%;
+}
+
+.InputProblem{
+    width: 100%;
+    height: 200px;
+    margin-bottom: 10px;
+}
+
+input::-webkit-input-placeholder{
+    position: relative;
+    left: 20px;
+}
+
+.PaymentBtnGroup{
+    margin: 20px 50px;
+}
+
+.PointBtn{
+    color: #000000;
+    background-color: transparent;
+    border: #cccccc 1px solid;
+}
+.PointBtn:hover{
+    color: #ffffff;
+    background-color: #40678c;
+}
+
+.PaymentBtn{
+    margin-right: 80px;
+}
+
+.CancelBtn{
+    margin-left: 80px;
+}
+
+.Station {
+    padding:10px;
+    font-size: 30px;
+    margin-left: 25px;
+}
+

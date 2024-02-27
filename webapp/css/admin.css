@@ -1,0 +1,95 @@
+@charset "UTF-8";
+
+
+.container1 {
+	display: flex;
+	flex-direction: column; /* 將方向設置為垂直，使子元素垂直排列 */
+	align-items: center; /* 容器內子元素置中排 */
+	justify-content: center;
+	
+	height: 250px; /* 容器大小 */
+	margin: auto;
+	background-image: url("image/cover1.png");
+	/* 替換 'your-image-path.jpg' 為你的圖片路徑 */
+	background-size: cover; /* 確保圖片充滿整個容器 */
+}
+
+.container1 floo {
+	font-size: 48px; /* 修改字體大小為 36 */
+	font-weight: bold; /* 設置為粗體 */
+}
+
+.container1 ride {
+	font-size: 24px;
+	font-weight: bold;
+}
+
+header {
+	margin: 30px;
+}
+
+a {
+	color: #003d4c;
+	text-decoration: underline;
+	font-weight: bold;
+}
+a:hover {
+	color: #367889;
+	text-decoration:none;
+}
+
+h2 {
+	justify-content: center;
+	color: #5587B5;
+}
+
+/** Tables **/
+table {
+	border-right:0;
+	clear: both;
+	color: #333;
+	margin-bottom: 10px;
+	width: 100%;
+}
+th {
+	border:0;
+	border-bottom:2px solid #555;
+	text-align: left;
+	padding:4px;
+}
+th a {
+	display: block;
+	padding: 2px 4px;
+	text-decoration: none;
+}
+th a.asc:after {
+	content: ' ⇣';
+}
+th a.desc:after {
+	content: ' ⇡';
+}
+table tr td {
+	padding: 6px;
+	text-align: left;
+	vertical-align: top;
+	border-bottom:1px solid #ddd;
+}
+table tr:nth-child(even) {
+	background: #f9f9f9;
+}
+td.actions {
+	text-align: center;
+	white-space: nowrap;
+}
+table td.actions a {
+	margin: 0px 6px;
+	padding:2px 5px;
+}
+
+.return_btn {
+	display: flex;
+	justify-content: end;
+	margin-right: 10px;
+}
+
+

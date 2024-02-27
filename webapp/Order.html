@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>租借紀錄</title>
+<link rel="stylesheet" href="css/Order.css" />
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/jquery-confirm.js"></script>
+<script src="js/big.min.js"></script>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+	<!-- Banner -->
+	<header>
+		<div class="container1">
+			<floo>NCU FLOO!</floo>
+			<ride>Let's start the ride</ride>
+		</div>
+
+		<div class="container2">
+			<div class="mmenu">
+				<a id="logout">✧登出</a>
+			</div>
+			<div class="mmenu">
+				<a href="map.html">✧車輛租借</a>
+			</div>
+			<div class="mmenu">
+				<a href="member_login.html">✧會員登入</a>
+			</div>
+			<div class="mmenu">
+				<a href="mission.html">✧任務列表</a>
+			</div>
+			<div class="mmenu">
+				<a href="index.html">✧回首頁</a>
+			</div>
+		</div>
+	</header>
+
+	<!-- 下半部分 -->
+	<div class="content-container">
+		<div>
+			<div>
+				<p>
+					<b class = "record">租借紀錄</b>
+				</p>
+			</div>
+
+			<div id="orderlist">
+				<div class="container">
+					<h6 class = "record2">訂單資料</h6>
+					<div>
+						<table id="table">
+							<thead>
+								<tr>
+									<th>訂單編號</th>
+									<th>學生編號</th>
+									<th>腳踏車編號</th>
+									<th>租借站點編號</th>
+									<th>歸還站點編號</th>
+									<th>歸還站點名稱</th>
+									<th>租借開始時間</th>
+									<th>歸還時間</th>
+									<th>金額</th>
+									<th>使用點數折抵</th>
+									<th>總金額</th>
+									<th>回報內容</th>
+								</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+			<script type="text/javascript">
+				// 全域變數紀錄SQL指令下的次數
+				$(document).ready(function() {
+					checkUserLogin();
+				});
+
+				function checkUserLogin() {
+					var id = localStorage.getItem('userId');
+					this.id = id;
+
+					if (!id) {
+						alert("您尚未登入，畫面將跳轉到會員登入頁面");
+						location.href = "member_login.html";
+					}
+				}
+
+				/* 會員登出功能 */
+				$('#logout').click(function() {
+					localStorage.clear();
+					this.userid = '';
+					alert("您已登出！")
+					location.href = "member_login.html"
+				});
+
+				var sql_num = 0;
+				function getAllMember() {
+					// 發出POST的GET請求取得所有會員列表
+					$.ajax({
+						type : "GET",
+						url : "api/order.do",
+						crossDomain : true,
+						data : {
+							"id" : this.id,
+							"op" : 0
+						},
+						cache : false,
+						dataType : 'json',
+						timeout : 5000,
+						success : function(response) {
+							updateTable(response.response.data);
+							console.log(response);
+						},
+						error : function() {
+							alert("無法連線到伺服器！");
+						}
+					});
+				}
+
+				// 更新會員列表表格
+				function updateTable(data) {
+					$("#table > tbody").empty();
+					var table_html = '';
+					$.each(data,
+							function(index, value) {
+								table_html += '<tr><td scope="row">'
+										+ value['order_id'] + '</td>';
+								table_html += '<td>' + value['student_id']
+										+ '</td>';
+								table_html += '<td>' + value['bike_id']
+										+ '</td>';
+								table_html += '<td>' + value['station1_id']
+										+ '</td>';
+								table_html += '<td>' + value['station2_id']
+										+ '</td>';
+								table_html += '<td>' + value['station2_name']
+										+ '</td>';
+								table_html += '<td>' + value['start_time']
+										+ '</td>';
+								table_html += '<td>' + value['end_time']
+										+ '</td>';
+								table_html += '<td>' + value['cost'] + '</td>';
+								table_html += '<td>' + value['point_used']
+										+ '</td>';
+								table_html += '<td>' + value['total_amount']
+										+ '</td>';
+								table_html += '<td>' + value['report_content']
+										+ '</td>';
+							})
+
+					$("#table > tbody").append(table_html);
+				}
+
+				$(document).ready(function() {
+					getAllMember();
+				});
+			</script>
+</body>
+</html>

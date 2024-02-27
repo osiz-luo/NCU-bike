@@ -1,0 +1,203 @@
+body {
+  	margin: 0; /* 邊際 */
+	font-weight: bold;
+}
+
+.container1 {
+  display: flex;
+  flex-direction: column; /* 將方向設置為垂直，使子元素垂直排列 */
+  align-items: center; /* 容器內子元素置中排 */
+  justify-content: center;
+ 
+  height: 250px; /* 容器大小 */
+  margin: auto;
+  background-image: url("image/cover1.png"); /* 替換 'your-image-path.jpg' 為你的圖片路徑 */
+  background-size: cover; /* 確保圖片充滿整個容器 */
+}
+
+.container1 ncu {
+  font-size: 48px; /* 修改字體大小為 36 */
+  font-weight: bold; /* 設置為粗體 */
+}
+
+.container1 ride {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.container2 {
+	display: flex;
+	flex-direction: row; /* 將方向設置為水平，使子元素水平排列 */
+	align-items: center;
+	justify-content: space-around; /* 在子元素之間平均分配空間 */
+
+	height: 70px; /* 容器大小 */
+	margin: -30px 120px 0;
+	background-color: black;
+	color: aliceblue;
+}
+
+a:link,
+a:visited {
+    color: inherit;
+    text-decoration: none;
+}
+
+.mmenu {
+	font-weight:bold;
+	font-size: 20px; /*文字隨著背景動態調整大小*/
+	margin: 0 10px; /* 左右各留 10px 的間距 */
+}
+
+.mmenu:hover {
+	color: #ff6353;
+	cursor: pointer;
+	border-bottom-color: #ff6353;
+}
+
+.container3 {
+  display: flex;
+  flex-direction: row; /* 將方向設置為水平，使子元素水平排列 */
+  align-items: center;
+  justify-content: space-around; /* 在子元素之間平均分配空間 */
+  border-bottom: 1px solid #000000;
+  height: 70px; /* 容器大小 */
+  margin: 10px 120px 0;
+  background-color: #ffffff;
+}
+
+.container3 p {
+  font-size: 1.5em; /*文字隨著背景動態調整大小*/
+  color: #000000;
+  margin: 0 10px; /* 左右各留 10px 的間距 */
+}
+
+.container4 {
+    position: relative;
+    width: 1233px;  /* 背景图片的宽度 */
+    height: 785px; /* 背景图片的高度 */
+   
+    margin: 20px auto; /* 上下保持 20px，左右自动 */
+    background-image: url("image/map1.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+	background-position: center;
+    
+}
+
+.station-icon-1 {
+    position: absolute;
+    top: 25%;  /* 在地圖上的位置 */
+    left: 70%; /* 在地圖上的位置 */
+    transform: translate(-25%, -70%); /* 保持原有的居中定位 */
+    width: 80px;  /* 图标宽度 */
+    height: 80px; /* 图标高度 */
+    background-image: url('image/station.png'); /* 保持原有的背景图像 */
+    background-size: cover; /* 确保背景图像覆盖整个元素 */
+    cursor: pointer; /* 保持原有的指针样式 */
+}
+.station-icon-2 {
+    position: absolute;
+    top: 72%;  /* 在地圖上的位置 */
+    left: 60%; /* 在地圖上的位置 */
+    transform: translate(-72%, -60%); /* 保持原有的居中定位 */
+    width: 80px;  /* 图标宽度 */
+    height: 80px; /* 图标高度 */
+    background-image: url('image/station.png'); /* 保持原有的背景图像 */
+    background-size: cover; /* 确保背景图像覆盖整个元素 */
+    cursor: pointer; /* 保持原有的指针样式 */
+}
+.station-icon-3 {
+    position: absolute;
+    top: 50%;  /* 在地圖上的位置 */
+    left: 90%; /* 在地圖上的位置 */
+    transform: translate(-50%, -90%); /* 保持原有的居中定位 */
+    width: 80px;  /* 图标宽度 */
+    height: 80px; /* 图标高度 */
+    background-image: url('image/station.png'); /* 保持原有的背景图像 */
+    background-size: cover; /* 确保背景图像覆盖整个元素 */
+    cursor: pointer; /* 保持原有的指针样式 */
+}
+.station-icon-4 {
+    position: absolute;
+    top: 90%;  /* 在地圖上的位置 */
+    left: 75%; /* 在地圖上的位置 */
+    transform: translate(-90%, -75%); /* 保持原有的居中定位 */
+    width: 80px;  /* 图标宽度 */
+    height: 80px; /* 图标高度 */
+    background-image: url('image/station.png'); /* 保持原有的背景图像 */
+    background-size: cover; /* 确保背景图像覆盖整个元素 */
+    cursor: pointer; /* 保持原有的指针样式 */
+}
+.station-icon-5 {
+    position: absolute;
+    top: 50%;  /* 在地圖上的位置 */
+    left: 42%; /* 在地圖上的位置 */
+    transform: translate(-50%, -42%); /* 保持原有的居中定位 */
+    width: 80px;  /* 图标宽度 */
+    height: 80px; /* 图标高度 */
+    background-image: url('image/station.png'); /* 保持原有的背景图像 */
+    background-size: cover; /* 确保背景图像覆盖整个元素 */
+    cursor: pointer; /* 保持原有的指针样式 */
+}
+
+.bike-info-container {
+    display: flex;
+    flex-wrap: wrap; /* 允許子元素換行 */
+    justify-content: center; /* 子元素置中 */
+	text-align: center; /* 置中文本 */
+    align-items: center;
+   
+    margin: 10px 120px 0;
+    padding: 10px;
+    background-color: #ffffff;
+}
+
+.bike-info-container > div {
+   
+    margin: 50px; /* 調整組與組之間的間距 */
+    text-align: center; /* 讓每個組內容置中 */
+    position: relative; /* 設定相對定位 */
+}
+.bike-info-container > div::before {
+    content: url('image/floo-logo.png'); /* 圖片 */
+    display: block; /* 讓 content 成為 block 元素，以便設定位置 */
+    margin-bottom: 10px; /* 圖片下方的空間 */
+}
+.bike-info-container > div > p {
+	font-size: 1.5em; /*文字隨著背景動態調整大小*/
+	color: #000000;
+}
+
+/* 按鈕樣式設定 */
+.bike-info-container button {
+    margin-top: 10px; /* 距離上方的空間 */
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.bike-info-container .station-info {
+    margin-bottom: 15px; /* 站點和自行車信息之間一些間距 */
+    background-size: cover; /* 其他背景大小属性 */
+    background-position: center; /* 背景居中 */
+}
+
+.bike-info-container .station-info p,
+.bike-info-container .station-info button {
+    display: inline-block;
+    margin: 0 5px;
+}
+
+
+/* 調整標籤（label）的位置 */
+label {
+  margin-right: 950px; /* 向右移動 10px，可以根據需要調整數值 */
+}
+
+.bicycle-search {
+  width: 15%; /* 調整搜索欄位的外框設為寬度 10% */
+}

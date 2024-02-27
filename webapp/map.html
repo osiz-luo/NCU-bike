@@ -1,0 +1,255 @@
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Floo-車輛租借</title>
+<link rel="stylesheet" href="css/map.css" />
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/jquery-confirm.js"></script>
+<script src="js/big.min.js"></script>
+</head>
+<body>
+	<div class="container1">
+		<ncu>NCU FLOO!</ncu>
+		<ride>Let's start the ride</ride>
+	</div>
+
+	<div class="container2">
+		<div class="mmenu">
+			<a href="member_login.html">✧登入</a>
+		</div>
+		<div class="mmenu">
+			<a href="map.html">✧車輛租借</a>
+		</div>
+		<div class="mmenu">
+			<a href="member_setting.html">✧我的會員</a>
+		</div>
+		<div class="mmenu">
+			<a href="mission.html">✧我的任務</a>
+		</div>
+		<div class="mmenu">
+			<a href="index.html">✧回首頁</a>
+		</div>
+	</div>
+
+	<div class="container3">
+		<p>
+			<b>點擊任意站點開始租借腳踏車</b>
+		</p>
+	</div>
+	<br />
+
+	<form action="/search" method="get">
+		<label for="search"></label> <input type="search" id="search" name="q"
+			class="bicycle-search" placeholder="輸入車號來租借腳踏車" />
+		<button type="submit">搜尋</button>
+	</form>
+
+	<div class="container4">
+		<div class="station-icon-1" id="staion1"></div>
+		<div class="station-icon-2" id="staion2"></div>
+		<div class="station-icon-3" id="staion3"></div>
+		<div class="station-icon-4" id="staion4"></div>
+		<div class="station-icon-5" id="staion5"></div>
+	</div>
+	<div class="bike-info-container">
+		<p>沒有任何腳踏車，點擊站點吧O(^_^)O!!</p>
+	</div>
+
+	<script type="text/javascript">
+		/* 站點1的點擊事件 */
+		$(document).ready(function() {
+			var userId = localStorage.getItem('userId');
+			this.userId = userId;
+			if (userId) {
+				alert("你已登入，" + this.userId + "，畫面將跳轉到正式租借頁面");
+				location.href = "map_logined.html";
+			}
+			// 處理表單點擊事件
+			$('#staion1').click(function() {
+				getBikeData(1, "小木屋鬆餅站");
+			});
+
+			function getBikeData(stationId, stationName) {
+				alert("下方顯示站點1可租借的腳踏車");
+				$.ajax({
+					type : "GET",
+					url : "api/bike.do",
+					crossDomain : true,
+					data : {
+						"id" : stationId
+					},
+					cache : false,
+					dataType : 'json',
+					timeout : 5000,
+					success : function(response) {
+						displayBikeData(response.response, stationName);
+					},
+					error : function() {
+						alert("無法連線到伺服器！");
+					}
+				});
+			}
+		});
+
+		function displayBikeData(bikeData, stationName, stationId) {
+			// 把查詢結果顯示在網頁上
+			$('.bike-info-container')
+					.empty()
+					//清空顯示欄
+					.append(
+							'<div class="station-info"><p><strong>站點名稱: '
+									+ stationName
+									+ '<input id="bikeID" name="bikeId" maxlength="3" type="text" placeholder="輸入車號來歸還腳踏車" />'
+									+ '</strong></p><button id="returnBike" style="background-color: #2894FF">歸還腳踏車</button></div>');
+
+			for (let i = 0; i < bikeData.length; i++) {
+				let bikeInfo = bikeData[i];
+				if (bikeInfo.available === 0)
+					continue;
+				let bikeStatus = bikeInfo.available == 1 ? '是' : '否';
+				let bikeSetDiv = $('<div>'); // 為每個車號組創建容器
+				// Append (車號, 可用) 到 <div>
+				bikeSetDiv.append('<p>車號: ' + bikeInfo.bike_id + '</p>');
+				bikeSetDiv.append('<p>可租: ' + bikeStatus + '</p>');
+				bikeSetDiv.append('<p>備註: ' + bikeInfo.bike_note + '</p>');
+
+				// 製作租車按鈕
+				if (bikeInfo.available == 1) {
+					let rentButton = $('<button>').text('租車');
+					/* 租車按鈕被點擊會呼叫函式rentBike */
+					rentButton.click(function() {					
+						alert("你尚未登入，畫面將跳轉到會員登入頁面");
+						// 未登入，跳轉至另一個頁面
+            			location.href = 'member_login.html';
+					});
+					bikeSetDiv.append(rentButton);
+				}
+
+				// Append 單個 <div> 到 .bike-info-container
+				$('.bike-info-container').append(bikeSetDiv);
+			}
+		}
+		
+		/* 站點2的點擊事件 */
+		$(document).ready(function() {
+			// 處理表單點擊事件
+			$('#staion2').click(function() {
+				getBikeData(2, "松苑餐廳站");
+			});
+
+			function getBikeData(stationId, stationName) {
+				alert("下方顯示站點2可租借的腳踏車");
+
+				$.ajax({
+					type : "GET",
+					url : "api/bike.do",
+					crossDomain : true,
+					data : {
+						"id" : stationId
+					},
+					cache : false,
+					dataType : 'json',
+					timeout : 5000,
+					success : function(response) {
+						displayBikeData(response.response, stationName);
+					},
+					error : function() {
+						alert("無法連線到伺服器！");
+					}
+				});
+			}
+		});
+
+		/* 站點3的點擊事件 */
+		$(document).ready(function() {
+			// 處理表單點擊事件
+			$('#staion3').click(function() {
+				getBikeData(3, "行政大樓站");
+			});
+
+			function getBikeData(stationId, stationName) {
+				alert("下方顯示站點3可租借的腳踏車");
+
+				$.ajax({
+					type : "GET",
+					url : "api/bike.do",
+					crossDomain : true,
+					data : {
+						"id" : stationId
+					},
+					cache : false,
+					dataType : 'json',
+					timeout : 5000,
+					success : function(response) {
+						displayBikeData(response.response, stationName);
+					},
+					error : function() {
+						alert("無法連線到伺服器！");
+					}
+				});
+			}
+		});
+
+		/* 站點4的點擊事件 */
+		$(document).ready(function() {
+			// 處理表單點擊事件
+			$('#staion4').click(function() {
+				getBikeData(4, "宵夜街站");
+			});
+
+			function getBikeData(stationId, stationName) {
+				alert("下方顯示站點4可租借的腳踏車");
+
+				$.ajax({
+					type : "GET",
+					url : "api/bike.do",
+					crossDomain : true,
+					data : {
+						"id" : stationId
+					},
+					cache : false,
+					dataType : 'json',
+					timeout : 5000,
+					success : function(response) {
+						displayBikeData(response.response, stationName);
+					},
+					error : function() {
+						alert("無法連線到伺服器！");
+					}
+				});
+			}
+		});
+
+		/* 站點5的點擊事件 */
+		$(document).ready(function() {
+			// 處理表單點擊事件
+			$('#staion5').click(function() {
+				getBikeData(5, "運動場站");
+				stationIDGlobal = 5;
+			});
+
+			function getBikeData(stationId, stationName) {
+				alert("下方顯示站點5可租借的腳踏車");
+
+				$.ajax({
+					type : "GET",
+					url : "api/bike.do",
+					crossDomain : true,
+					data : {
+						"id" : stationId
+					},
+					cache : false,
+					dataType : 'json',
+					timeout : 5000,
+					success : function(response) {
+						displayBikeData(response.response, stationName);
+					},
+					error : function() {
+						alert("無法連線到伺服器！");
+					}
+				});
+			}
+		});
+	</script>
+</body>
+</html>

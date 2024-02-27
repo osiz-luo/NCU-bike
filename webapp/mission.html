@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Floo-我的任務</title>
+<link rel="stylesheet" href="css/mission.css" />
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/jquery-confirm.js"></script>
+<script src="js/big.min.js"></script>
+</head>
+
+<body>
+	<div class="container1">
+		<floo>NCU FLOO!</floo>
+		<ride>Let's start the ride</ride>
+	</div>
+
+	<div class="container2">
+		<div class="mmenu">
+			<a id="logout">✧登出</a>
+		</div>
+		<div class="mmenu">
+			<a href="map_logined.html">✧車輛租借</a>
+		</div>
+		<div class="mmenu">
+			<a href="member_setting.html">✧我的會員</a>
+		</div>
+		<div class="mmenu">
+			<a href>✧任務列表</a>
+		</div>
+		<div class="mmenu">
+			<a href="index.html">✧回首頁</a>
+		</div>
+	</div>
+
+	<div class="container3">
+		<p>
+			<b>任務</b>
+		</p>
+	</div>
+	<div class="container">
+		<div class="box">
+			<div class="missionTitle">輕鬆騎乘</div>
+			<div class="missionContent">騎乘1次</div>
+			<div class="reward">2點</div>
+			<div class="btnContainer">
+				<button class="btn" id="btn1" onclick="toggleMission(this)">開始任務</button>
+				<div class="hidden2" id="myBlock2">
+					騎乘次數：<input class="hidden" id="myBlock" disabled></input>
+				</div>
+			</div>
+		</div>
+		<br>
+		<div class="box">
+			<div class="missionTitle">說走就走</div>
+			<div class="missionContent">騎乘2次</div>
+			<div class="reward">5點</div>
+			<div class="btnContainer">
+				<button class="btn" id="btn2" onclick="toggleMission(this)">開始任務</button>
+			</div>
+		</div>
+		<br>
+		<div class="box">
+			<div class="missionTitle">騎乘大師</div>
+			<div class="missionContent">騎乘3次</div>
+			<div class="reward">8點</div>
+			<div class="btnContainer">
+				<button class="btn" id="btn3" onclick="toggleMission(this)">開始任務</button>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="overlay"></div>
+
+
+	<script>
+	  $(document).ready(function() {
+			var userId = localStorage.getItem('userId');
+			this.userId = userId;
+			var missionId = localStorage.getItem('missionId');
+			this.missionId = missionId;
+
+		  			if (!userId) {
+				alert("您尚未登入，畫面將跳轉到會員登入頁面");
+				location.href = "member_login.html";
+			}
+		  // 發出GET的AJAX請求
+			$.ajax({
+				type : "GET",
+				url : "api/member.do",
+				crossDomain : true,
+				data : {"id" : userId},
+				cache : false,
+				dataType : 'json',
+				timeout : 5000,
+				success : function(response) {
+					if(response.missionId){alert("目前任務ID："+response.missionId);
+					document.getElementById("myBlock").value = response.ridingtimes;
+					showBlock();
+					switch(response.missionId) {
+					case 1 :
+						updateButtonState(btn1, "放棄任務", "btn-give-up");
+						localStorage.setItem('missonId', 1);
+						break;
+					case 2 :
+						updateButtonState(btn2, "放棄任務", "btn-give-up");
+						localStorage.setItem('missonId', 2);
+						break;
+					case 3 :
+						updateButtonState(btn3, "放棄任務", "btn-give-up");
+						localStorage.setItem('missonId', 3);
+						break;
+						}
+					}
+					else{alert("目前無接取任務！");}
+				},
+				error : function() {
+					alert("無法連線到伺服器！");
+				}
+			});
+			$('#logout').click(function() {
+				localStorage.clear();
+	            this.userid = '';
+	            alert("您已登出！")
+	            localStorage.clear();
+	            location.href ="member_login.html" 
+			});
+	  });
+    var currentMission = null;
+    var currentIndex = 0;
+
+
+    function toggleMission(button) {
+        if (currentMission !== null && currentMission !== button.closest(".box")) {
+            showMessage("目前已接取任務，若需接取新任務請放棄當前任務");
+        }
+        else if (currentMission !== null && currentMission == button.closest(".box")){
+        	 // 使用 confirm 函數顯示彈窗
+            var userChoice = confirm("確定要放棄任務嗎？");
+
+            // 根據使用者的選擇執行不同的邏輯
+            if (userChoice) {
+                // 使用者按下了 OK
+            	updateButtonState(button, "開始任務", "btn");
+            	currentMission = null;
+        }
+            else {
+                currentMission = button.closest(".box");
+                updateButtonState(button, "放棄任務", "btn-give-up");
+            }
+        }    
+        else {
+            currentMission = button.closest(".box");
+            updateButtonState(button, "放棄任務", "btn-give-up");
+        }
+
+    }
+    function showMessage(message) {
+        // 创建一个 <div> 元素
+        var alertDiv = document.createElement("div");
+        
+        // 设置样式
+        alertDiv.style.position = "fixed";
+        alertDiv.style.top = "0";
+        alertDiv.style.left = "50%"; // 让弹窗水平居中
+        alertDiv.style.transform = "translateX(-50%)"; // 水平居中的完整方法
+        alertDiv.style.backgroundColor = "#f8d7da";
+        alertDiv.style.color = "#721c24";
+        alertDiv.style.padding = "10px";
+        alertDiv.style.border = "1px solid #f5c6cb";
+        alertDiv.style.borderRadius = "5px";
+        alertDiv.style.marginBottom = "15px";
+
+        // 设置内容
+        alertDiv.textContent = message;
+
+        // 将 <div> 元素添加到页面中
+        document.body.appendChild(alertDiv);
+
+        // 5 秒后移除警告消息
+        setTimeout(function() {
+            alertDiv.remove();
+        }, 5000);
+    }
+
+ 
+    function updateButtonState(button, text, className = "") {
+        button.textContent = text;
+        button.className = "btn " + className;
+    }
+
+	$('#btn1').click(function() {
+		var op = 'setmissioninfo';
+		var userid = localStorage.getItem('userId');
+		var missionid = localStorage.getItem('missionId');
+		if (!missionid){
+		var data_object = {
+				"op" : op,
+				"id" : userid,
+				"missionId" : 1,
+				"ridingTime" : 0,
+				"point" : 0
+			};
+		var data_string = JSON.stringify(data_object);
+		 // 發出PUT的AJAX請求，接取任務
+		$.ajax({
+			type : "PUT",
+			url : "api/member.do",
+			data : data_string,
+			crossDomain : true,
+			cache : false,
+			dataType : 'json',
+			timeout : 5000,
+			success : function(response) {
+				localStorage.setItem('missionId',1);
+				updateButtonState(btn1, "放棄任務", "btn-give-up");
+				alert(response.message);
+				showBlock();
+			},
+			error : function() {
+				alert("無法連線到伺服器！");
+			}
+		});}
+		
+		if (missionid){
+		var data_object = {
+				"op" : op,
+				"id" : userid,
+				"missionId" : 0,
+				"ridingTime" : 0,
+				"point" : 0
+			};
+		var data_string = JSON.stringify(data_object);
+		 // 發出PUT的AJAX請求，接取任務
+		$.ajax({
+			type : "PUT",
+			url : "api/member.do",
+			data : data_string,
+			crossDomain : true,
+			cache : false,
+			dataType : 'json',
+			timeout : 5000,
+			success : function(response) {
+				localStorage.removeItem('missionId');
+				alert("已放棄任務！");
+				updateButtonState(btn1, "開始任務", "btn");
+				hideBlock();
+			},
+			error : function() {
+				alert("無法連線到伺服器！");
+			}
+		});}
+	});
+
+	
+	$('#btn2').click(function() {
+		var op = 'setmissioninfo';
+		var userid = localStorage.getItem('userId');
+		var missionid = localStorage.getItem('missionId');
+		if (!missionid){
+		var data_object = {
+				"op" : op,
+				"id" : userid,
+				"missionId" : 2,
+				"ridingTime" : 0,
+				"point" : 0
+			};
+		var data_string = JSON.stringify(data_object);
+		 // 發出PUT的AJAX請求，接取任務
+		$.ajax({
+			type : "PUT",
+			url : "api/member.do",
+			data : data_string,
+			crossDomain : true,
+			cache : false,
+			dataType : 'json',
+			timeout : 5000,
+			success : function(response) {
+				localStorage.setItem('missionId',2);
+				alert(response.message);
+				updateButtonState(btn2, "放棄任務", "btn-give-up");
+			},
+			error : function() {
+				alert("無法連線到伺服器！");
+			}
+		});}
+		
+		if (missionid){
+		var data_object = {
+				"op" : op,
+				"id" : userid,
+				"missionId" : 0,
+				"ridingTime" : 0,
+				"point" : 0
+			};
+		var data_string = JSON.stringify(data_object);
+		 // 發出PUT的AJAX請求，接取任務
+		$.ajax({
+			type : "PUT",
+			url : "api/member.do",
+			data : data_string,
+			crossDomain : true,
+			cache : false,
+			dataType : 'json',
+			timeout : 5000,
+			success : function(response) {
+				localStorage.removeItem('missionId');
+				alert("已放棄任務！");
+				updateButtonState(btn2, "開始任務", "btn");
+			},
+			error : function() {
+				alert("無法連線到伺服器！");
+			}
+		});}
+	});
+	
+	
+	$('#btn3').click(function() {
+		var op = 'setmissioninfo';
+		var userid = localStorage.getItem('userId');
+		var missionid = localStorage.getItem('missionId');
+		if (!missionid){
+		var data_object = {
+				"op" : op,
+				"id" : userid,
+				"missionId" : 3,
+				"ridingTime" : 0,
+				"point" : 0
+			};
+		var data_string = JSON.stringify(data_object);
+		 // 發出PUT的AJAX請求，接取任務
+		$.ajax({
+			type : "PUT",
+			url : "api/member.do",
+			data : data_string,
+			crossDomain : true,
+			cache : false,
+			dataType : 'json',
+			timeout : 5000,
+			success : function(response) {
+				localStorage.setItem('missionId',3);
+				alert(response.message);
+				updateButtonState(btn3, "放棄任務", "btn-give-up");
+			},
+			error : function() {
+				alert("無法連線到伺服器！");
+			}
+		});}
+		
+		if (missionid){
+		var data_object = {
+				"op" : op,
+				"id" : userid,
+				"missionId" : 0,
+				"ridingTime" : 0,
+				"point" : 0
+			};
+		var data_string = JSON.stringify(data_object);
+		 // 發出PUT的AJAX請求，接取任務
+		$.ajax({
+			type : "PUT",
+			url : "api/member.do",
+			data : data_string,
+			crossDomain : true,
+			cache : false,
+			dataType : 'json',
+			timeout : 5000,
+			success : function(response) {
+				localStorage.removeItem('missionId');
+				alert("已放棄任務！");
+				updateButtonState(btn3, "開始任務", "btn");
+			},
+			error : function() {
+				alert("無法連線到伺服器！");
+			}
+		});}
+	});
+	
+	
+	function showBlock() {
+	    var myBlock = document.getElementById('myBlock');
+	    myBlock.style.display = 'block';
+	    myBlock2.style.display = 'block';
+	}
+
+	// 在某些條件下隱藏區塊
+	function hideBlock() {
+	    var myBlock = document.getElementById('myBlock');
+	    myBlock.style.display = 'none';
+	    myBlock2.style.display = 'none';
+	}
+	
+</script>
+
+</body>
+</html>

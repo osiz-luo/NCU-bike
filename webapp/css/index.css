@@ -1,0 +1,304 @@
+body {
+	margin: 0; /* 滿版無空間 */
+}
+
+.container1 {
+	display: flex;
+	flex-direction: column; /* 將方向設置為垂直，使子元素垂直排列 */
+	align-items: center; /* 容器內子元素置中排 */
+	justify-content: center;
+	
+	height: 400px; /* 容器大小 */
+	margin: auto;
+	background-image: url("image/cover.png");
+	/* 替換 'your-image-path.jpg' 為你的圖片路徑 */
+	background-size: cover; /* 修改為 'contain' */
+	background-repeat: no-repeat; /* 防止重複 */
+	background-position: center center; /* 將圖片置中 */
+	background-origin: border-box; /* 設置為 'border-box' */
+}
+
+.container1 floo {
+	font-size: 48px; /* 修改字體大小為 36 */
+	font-weight: bold; /* 設置為粗體 */
+}
+
+.container1 ride {
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.loginbutton{
+	position: absolute; /* 設置為絕對定位 */
+	top: 30px; /* 距離上邊界的距離 */
+	right: 30px; /* 距離右邊界的距離 */
+	font-size: 18px;
+	font-weight: bold;
+	width: 120px;
+	height: 30px;
+	display: block;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	line-height: 30px;
+	cursor: pointer;
+	
+	color: #fff;
+	background-color: #000;
+}
+
+.loginbutton:hover {
+	color: #ff6353;
+}
+
+.adminbutton{
+	position: absolute; /* 設置為絕對定位 */
+	top: 70px; /* 距離上邊界的距離 */
+	right: 30px; /* 距離右邊界的距離 */
+	font-size: 15px;
+	font-weight: bold;
+	width: 120px;
+	height: 30px;
+	display: block;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	line-height: 30px;
+	cursor: pointer;
+	
+	color: #fff;
+	background-color: #000;
+}
+
+.adminbutton:hover {
+	color: #ff6353;
+}
+
+.container2 {
+	display: flex;
+	flex-direction: row; /* 將方向設置為水平，使子元素水平排列 */
+	align-items: center;
+	justify-content: space-around; /* 在子元素之間平均分配空間 */
+	
+	height: 70px; /* 容器大小 */
+	margin: 10px 120px 0;
+	background-color: #ffffff;
+}
+
+.container2 p {
+	font-size: 1.5em; /*文字隨著背景動態調整大小*/
+	color: #5587b5;
+	margin: 0 10px; /* 左右各留 10px 的間距 */
+}
+
+.container-34 {
+	display: flex;
+	justify-content: space-between;
+	
+	width: 80%;
+	margin: 30px auto 0; /* 將左右外邊距設置為 auto */
+}
+
+.container3 {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	
+	height: 200px;
+	flex-grow: 2;
+	margin-left: 20px;
+	background-image: url("image/index_1.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center; /* 圖片中心置中 */
+	width: 40%; /* 使用百分比設置寬度 */
+	min-width: 200px; /* 設置最小寬度 */
+}
+
+.container4 {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	
+	height: 200px;
+	flex-grow: 2;
+	margin-right: 20px;
+	width: 40%; /* 使用百分比設置寬度 */
+	min-width: 200px; /* 設置最小寬度 */
+}
+
+.container4 p {
+	font-size: 1.25em;
+	color: #000000;
+}
+
+.container-56 {
+	display: flex;
+	justify-content: space-between;
+	
+	width: 80%;
+	margin: 30px auto 0; /* 將左右外邊距設置為 auto */
+}
+
+.container6 {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	
+	height: 200px;
+	flex-grow: 2;
+	margin-right: 20px;
+	width: 40%; /* 使用百分比設置寬度 */
+	min-width: 200px; /* 設置最小寬度 */
+}
+
+.container6 p {
+	font-size: 1.25em;
+	color: #000000;
+}
+
+.container5 {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	
+	height: 200px;
+	flex-grow: 2;
+	margin-left: 20px;
+	background-image: url("image/index_2.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center; /* 圖片中心置中 */
+	width: 40%; /* 使用百分比設置寬度 */
+	min-width: 200px; /* 設置最小寬度 */
+}
+
+.container-78 {
+	display: flex;
+	justify-content: space-between;
+	
+	width: 80%;
+	margin: 30px auto 0; /* 將左右外邊距設置為 auto */
+}
+
+.container7 {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	
+	height: 200px;
+	flex-grow: 2;
+	margin-left: 20px;
+	background-image: url("image/index_3.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center; /* 圖片中心置中 */
+	width: 40%; /* 使用百分比設置寬度 */
+	min-width: 200px; /* 設置最小寬度 */
+}
+
+.container8 {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	
+	height: 200px;
+	flex-grow: 2;
+	margin-right: 20px;
+	width: 40%; /* 使用百分比設置寬度 */
+	min-width: 200px; /* 設置最小寬度 */
+}
+
+.container8 p {
+	font-size: 1.25em;
+	color: #000000;
+}
+
+.container-910 {
+	display: flex;
+	justify-content: space-between;
+	
+	width: 80%;
+	margin: 30px auto 60px; /* 保留底部空白 */
+}
+
+.container-910 {
+	display: flex;
+	justify-content: space-between;
+	
+	width: 80%;
+	margin: 30px auto 60px; /* 保留底部空白 */
+	position: relative;
+}
+
+.container9 {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: space-around;
+	
+	background-color: #5587b5;
+	margin: 0; /* 緊貼 container-910 的邊界 */
+	flex-grow: 2; /* 佔據 container-910 的三分之二 */
+	position: relative;
+}
+
+.container9 p {
+	font-size: 1em;
+	color: #ffffff;
+	margin: 0 10px;
+	align-self: flex-start;
+}
+
+.container9 h2 {
+	font-size: 1.5em;
+	color: #ffffff;
+	margin: 0 10px;
+	align-self: flex-start;
+}
+
+.mapbutton {
+	position: absolute;
+	bottom: 10px; /* 距離底部 */
+	right: 10px; /* 距離右邊 */
+	font-size: 1.5em;
+	height: 30px;
+	display: block;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	line-height: 30px;
+	cursor: pointer;
+	
+	color: #fff;
+	background-color: #000;
+	font-weight: bold;
+}
+
+.mapbutton:hover {
+	color: #ff6353;
+}
+
+.container10 {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	
+	height: 200px;
+	flex-grow: 1; /* 佔據 container-910 的三分之一 */
+	margin-left: 20px; /* 調整左邊外邊距 */
+	background-image: url("image/Index_4.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 40%; /* 使用百分比設置寬度 */
+	min-width: 200px; /* 設置最小寬度 */
+}
+
+.adminLoginBtn {
+	display: flex;
+	justify-content: end;
+	
+	width: 80%;
+	margin: 30px auto 60px; /* 保留底部空白 */
+}

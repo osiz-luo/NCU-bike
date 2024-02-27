@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>會員清單</title>
+
+<link rel="stylesheet" type="text/css" href="css/admin.css">
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"
+	crossorigin="anonymous"></script>
+</head>
+
+<body>
+	<div id="container">
+		<div class="container1">
+			<floo>NCU FLOO!</floo>
+		</div>
+
+		<div id="content">
+			<h2>會員清單</h2>
+			<a href="admin_register.html">新增管理員</a> <a href="admin_setting.html">修改會員資料</a>
+
+			<div id="flashMessage" class="message" style="display: none;"></div>
+
+			<table id="table">
+				<thead>
+					<tr>
+						<th>學號</th>
+						<th>姓名</th>
+						<th>電郵</th>
+						<th>執行任務</th>
+						<th>持有點數</th>
+						<th>功能</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+
+			<div class="return_btn">
+				<a href="index.html">回首頁</a>
+			</div>
+
+			<script type="text/javascript">
+				// 全域變數紀錄SQL指令下的次數
+				var sql_num = 0;
+				function deleteMember(id) {
+					var check = window.confirm("確認刪除會員？");
+					if (check == true) {
+						console.log("You pressed OK!");
+						var request = {
+							'id' : id
+						};
+						var data_string = JSON.stringify(request);
+						$.ajax({
+							type : "DELETE",
+							url : "api/member.do",
+							crossDomain : true,
+							data : data_string,
+							cache : false,
+							dataType : 'json',
+							timeout : 5000,
+							success : function(response) {
+								if (response.status == 200) {
+									$("#flashMessage").html("成功! 已經成功刪除會員...");
+									$("#flashMessage").show();
+									getAllMember();
+								}
+								console.log(response);
+							},
+							error : function() {
+								alert("無法連線到伺服器！");
+							}
+						});
+					} else {
+						console.log("You pressed Cancel!");
+					}
+				}
+
+				function getAllMember() {
+					// 發出POST的GET請求取得所有會員列表
+					$.ajax({
+						type : "GET",
+						url : "api/member.do",
+						crossDomain : true,
+						cache : false,
+						dataType : 'json',
+						timeout : 5000,
+						success : function(response) {
+							if (response.status == 200) {
+								updateTable(response.response.data);
+								updateSQLTable(response.response);
+							}
+							console.log(response);
+						},
+						error : function() {
+							alert("無法連線到伺服器！");
+						}
+					});
+				}
+
+				// 更新會員列表表格
+				function updateTable(data) {
+					$("#table > tbody").empty();
+					var table_html = '';
+					$.each(data, function(index, value) {
+						table_html += '<tr><td scope="row">'
+								+ value['student_id'] + '</td>';
+						table_html += '<td>' + value['email'] + '</td>';
+						table_html += '<td>' + value['student_name'] + '</td>';
+						table_html += '<td>' + value['riding_time'] + '</td>';
+						table_html += '<td>' + value['mission_id'] + '</td>';
+						table_html += '<td>'
+								+ '<a href="admin_setting.html?student_id='
+								+ value['student_id'] + '">編輯</a> ';
+						//table_html += '<a href="javascript: deleteMember(' + value['student_id'] + ');">刪除</a></td></tr>';
+					})
+
+					$("#table > tbody").append(table_html);
+				}
+
+				// 更新SQL指令歷史表格
+				function updateSQLTable(data) {
+					$("#sql_log > tbody").empty();
+					var time = (data.time / 1000000).toFixed(2);
+					var table_html = "";
+
+					sql_num = 0;
+					sql_num += 1
+
+					table_html += '<tr>';
+					table_html += '<td>' + sql_num + '</td>';
+					table_html += '<td>' + data.sql + '</td>';
+					table_html += '<td style="text-align: right">' + '0'
+							+ '</td>';
+					table_html += '<td style="text-align: right">' + data.row
+							+ '</td>';
+					table_html += '<td style="text-align: right">' + data.row
+							+ '</td>';
+					table_html += '<td style="text-align: right">' + time
+							+ '</td>';
+					table_html += '</tr>';
+					$("#sql_log > tbody").append(table_html);
+					$("#sql_summary").html(
+							"(default) " + data.row + " queries took " + time
+									+ " ms");
+				}
+				$(document).ready(function() {
+					getAllMember();
+				});
+			</script>
+		</div>
+
+	</div>
+
+</body>
+
+</html>
